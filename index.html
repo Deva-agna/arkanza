@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Aqiqah & Tasmiyah - Muhammad Arkanza Devandra</title>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Undangan Aqiqah & Tasmiyah - Muhammad Arkanza Devandra">
+    <meta property="og:description" content="Kami mengundang Anda untuk menghadiri acara Aqiqah dan Tasmiyah putra kami tercinta">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=1200&h=630&fit=crop">
+    <meta property="og:url" content="https://username.github.io/arkanza">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sage': {
+                            50: '#f6f7f4',
+                            100: '#e8ebe3',
+                            200: '#d4dac9',
+                            300: '#b8c2a5',
+                            400: '#9aa67e',
+                            500: '#7d8a60',
+                            600: '#626d4a',
+                            700: '#4d573c',
+                            800: '#3f4632',
+                            900: '#363b2c',
+                        },
+                        'warm': {
+                            50: '#faf9f7',
+                            100: '#f2f0eb',
+                            200: '#e6e2d6',
+                            300: '#d4ceb8',
+                            400: '#beb396',
+                            500: '#a89878',
+                            600: '#8f7f61',
+                            700: '#76674f',
+                            800: '#615442',
+                            900: '#504638',
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Cormorant Garamond', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .arabic-font {
+            font-family: 'Amiri', 'Traditional Arabic', serif;
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .countdown-item {
+            background: linear-gradient(135deg, rgba(125, 138, 96, 0.1) 0%, rgba(168, 152, 120, 0.1) 100%);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #f6f7f4 0%, #e8ebe3 50%, #e6e2d6 100%);
+        }
+    </style>
+</head>
+<body class="bg-warm-50 font-sans text-warm-800 antialiased">
+    
+    <!-- Music Player (Fixed) -->
+    <div id="music-player" class="fixed bottom-4 right-4 z-50 hidden">
+        <button id="music-toggle" class="w-12 h-12 rounded-full bg-sage-500 text-white shadow-lg flex items-center justify-center hover:bg-sage-600 transition-all duration-300">
+            <i id="music-icon" class="ph ph-speaker-high text-xl"></i>
+        </button>
+        <audio id="background-music" loop>
+            <source src="assets/music/musik.mpeg" type="audio/mpeg">
+        </audio>
+    </div>
+    
+    <!-- Overlay Cover -->
+    <div id="overlay" class="fixed inset-0 z-40 bg-gradient-to-br from-sage-50 via-warm-50 to-warm-100 flex items-center justify-center">
+        <div class="text-center px-6 max-w-md" data-aos="fade-up" data-aos-duration="1000">
+            <div class="mb-6">
+                <p class="text-sage-600 text-sm tracking-widest uppercase mb-2">Undangan Aqiqah & Tasmiyah</p>
+                <h1 class="font-serif text-4xl md:text-5xl text-sage-700 font-bold leading-tight">
+                    Muhammad<br>Arkanza<br>Devandra
+                </h1>
+            </div>
+            
+            <div class="w-20 h-px bg-sage-400 mx-auto mb-6"></div>
+            
+            <div class="mb-8" id="guest-name-container">
+                <p class="text-warm-600 text-sm mb-2">Kepada Yth.</p>
+                <h2 id="guest-name" class="font-serif text-2xl md:text-3xl text-sage-800 font-semibold">
+                    Bapak/Ibu/Saudara/i
+                </h2>
+            </div>
+            
+            <button id="open-invitation" class="group relative inline-flex items-center gap-2 px-8 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300 shadow-lg hover:shadow-xl">
+                <i class="ph ph-envelope-open text-lg"></i>
+                <span>Buka Undangan</span>
+            </button>
+            
+            <p class="mt-6 text-warm-500 text-xs">Mohon maaf apabila ada kesalahan nama/gelar</p>
+        </div>
+    </div>
+    
+    <!-- Main Content -->
+    <main id="main-content" class="hidden">
+        
+        <!-- Hero Section -->
+        <section class="min-h-screen hero-bg flex items-center justify-center relative overflow-hidden px-4">
+            <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                <div class="absolute top-10 left-10 w-32 h-32 rounded-full bg-sage-300 blur-3xl"></div>
+                <div class="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-warm-300 blur-3xl"></div>
+            </div>
+            
+            <div class="text-center relative z-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-duration="1200">
+                <div class="mb-6 inline-block">
+                    <div class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden border-4 border-white shadow-2xl floating">
+                        <img src="assets/images/foto.jpeg" 
+                             alt="Muhammad Arkanza Devandra" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <p class="text-sage-600 text-sm tracking-widest uppercase mb-3">Undangan Aqiqah & Tasmiyah</p>
+                <h1 class="font-serif text-4xl md:text-6xl text-sage-700 font-bold mb-4 leading-tight">
+                    Muhammad Arkanza<br>Devandra
+                </h1>
+                
+                <div class="flex items-center justify-center gap-4 mb-6 text-warm-600">
+                    <div class="h-px w-12 bg-warm-400"></div>
+                    <i class="ph ph-moon-stars text-2xl text-sage-500"></i>
+                    <div class="h-px w-12 bg-warm-400"></div>
+                </div>
+                
+                <p class="text-warm-600 text-sm md:text-base max-w-md mx-auto leading-relaxed">
+                    "Setiap anak tergadaikan dengan aqiqahnya, yang disembelihkan untuknya pada hari ketujuh, diberi nama, dan dicukur kepalanya"
+                </p>
+                <p class="text-sage-500 text-xs mt-2">- HR. Bukhari & Muslim</p>
+            </div>
+            
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <i class="ph ph-caret-down text-2xl text-sage-400"></i>
+            </div>
+        </section>
+        
+        <!-- Ayat Suci Section -->
+        <section class="py-20 px-4 bg-white">
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1000">
+                <div class="mb-8">
+                    <i class="ph ph-book-open-text text-4xl text-sage-400 mb-4"></i>
+                </div>
+                
+                <div class="arabic-font text-2xl md:text-3xl text-sage-700 leading-loose mb-6" dir="rtl">
+                    وَاللَّهُ أَخْرَجَكُم مِّن بُطُونِ أُمَّهَاتِكُمْ لَا تَعْلَمُونَ شَيْئًا وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ ۙ لَعَلَّكُمْ تَشْكُرُونَ
+                </div>
+                
+                <p class="text-sage-600 font-medium mb-4">QS. An-Nahl: 78</p>
+                
+                <div class="w-16 h-px bg-sage-300 mx-auto mb-6"></div>
+                
+                <p class="text-warm-600 text-sm md:text-base leading-relaxed max-w-xl mx-auto italic">
+                    "Dan Allah telah mengeluarkan kamu dari perut ibumu dalam keadaan tidak mengetahui sesuatu pun, dan Dia memberi kamu pendengaran, penglihatan, dan hati, agar kamu bersyukur."
+                </p>
+            </div>
+        </section>
+        
+        <!-- Profil Bayi Section -->
+        <section class="py-20 px-4 bg-warm-50">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <p class="text-sage-600 text-sm tracking-widest uppercase mb-2">Profil Bayi</p>
+                    <h2 class="font-serif text-3xl md:text-4xl text-sage-700 font-bold">Kenalan Yuk!</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="order-2 md:order-1" data-aos="fade-right" data-aos-delay="200">
+                        <div class="bg-white rounded-3xl p-8 shadow-xl">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-12 h-12 rounded-full bg-sage-100 flex items-center justify-center">
+                                    <i class="ph ph-baby text-2xl text-sage-600"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-warm-500 uppercase tracking-wider">Nama Lengkap</p>
+                                    <h3 class="font-serif text-2xl text-sage-700 font-bold">Muhammad Arkanza Devandra</h3>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <i class="ph ph-star text-sage-500 mt-1"></i>
+                                    <div>
+                                        <p class="text-sm text-warm-500">Arti Nama</p>
+                                        <p class="text-warm-700 text-sm leading-relaxed">
+                                            <strong>Muhammad:</strong> Yang terpuji, nama Nabi Muhammad SAW<br>
+                                            <strong>Arkanza:</strong> Anugerah yang mulia dan berharga<br>
+                                            <strong>Devandra:</strong> Pemimpin yang bijaksana dan penuh kasih
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-3">
+                                    <i class="ph ph-calendar text-sage-500 mt-1"></i>
+                                    <div>
+                                        <p class="text-sm text-warm-500">Tanggal Lahir</p>
+                                        <p class="text-warm-700">12 April 2026</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start gap-3">
+                                    <i class="ph ph-heart text-sage-500 mt-1"></i>
+                                    <div>
+                                        <p class="text-sm text-warm-500">Nama Panggilan</p>
+                                        <p class="text-warm-700">Arkan</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-1 md:order-2" data-aos="fade-left" data-aos-delay="400">
+                        <div class="relative">
+                            <div class="absolute -inset-4 bg-sage-200 rounded-3xl transform rotate-3"></div>
+                            <img src="assets/images/foto.jpeg" 
+                                 alt="Arkanza" 
+                                 class="relative rounded-2xl shadow-2xl w-full h-80 md:h-96 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Countdown Section -->
+        <section class="py-16 px-4 bg-sage-50">
+            <div class="max-w-4xl mx-auto text-center">
+                <div data-aos="fade-up">
+                    <p class="text-sage-600 text-sm tracking-widest uppercase mb-2">Menuju Hari Bahagia</p>
+                    <h2 class="font-serif text-3xl md:text-4xl text-sage-700 font-bold mb-8">Countdown Timer</h2>
+                </div>
+                
+                <div class="grid grid-cols-4 gap-3 md:gap-6 max-w-2xl mx-auto" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="countdown-item rounded-2xl p-4 md:p-6">
+                        <div id="days" class="font-serif text-3xl md:text-5xl text-sage-700 font-bold">00</div>
+                        <p class="text-warm-600 text-xs md:text-sm mt-1">Hari</p>
+                    </div>
+                    <div class="countdown-item rounded-2xl p-4 md:p-6">
+                        <div id="hours" class="font-serif text-3xl md:text-5xl text-sage-700 font-bold">00</div>
+                        <p class="text-warm-600 text-xs md:text-sm mt-1">Jam</p>
+                    </div>
+                    <div class="countdown-item rounded-2xl p-4 md:p-6">
+                        <div id="minutes" class="font-serif text-3xl md:text-5xl text-sage-700 font-bold">00</div>
+                        <p class="text-warm-600 text-xs md:text-sm mt-1">Menit</p>
+                    </div>
+                    <div class="countdown-item rounded-2xl p-4 md:p-6">
+                        <div id="seconds" class="font-serif text-3xl md:text-5xl text-sage-700 font-bold">00</div>
+                        <p class="text-warm-600 text-xs md:text-sm mt-1">Detik</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Event Schedule Section -->
+        <section class="py-20 px-4 bg-white">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <p class="text-sage-600 text-sm tracking-widest uppercase mb-2">Detail Acara</p>
+                    <h2 class="font-serif text-3xl md:text-4xl text-sage-700 font-bold">Waktu & Tempat</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Date Card -->
+                    <div class="bg-gradient-to-br from-sage-50 to-warm-50 rounded-3xl p-8 shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-14 h-14 rounded-2xl bg-sage-500 text-white flex items-center justify-center mb-6">
+                            <i class="ph ph-calendar-blank text-3xl"></i>
+                        </div>
+                        
+                        <h3 class="font-serif text-2xl text-sage-700 font-bold mb-4">Tanggal & Waktu</h3>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <i class="ph ph-calendar text-sage-500"></i>
+                                <p class="text-warm-700">Minggu, 26 April 2026</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="ph ph-clock text-sage-500"></i>
+                                <p class="text-warm-700">08:00 WIB - Selesai</p>
+                            </div>
+                        </div>
+                        
+                        <a href="#" onclick="addToCalendar(); return false;" class="mt-6 inline-flex items-center gap-2 text-sage-600 hover:text-sage-700 font-medium text-sm">
+                            <i class="ph ph-calendar-plus"></i>
+                            <span>Simpan ke Kalender</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Location Card -->
+                    <div class="bg-gradient-to-br from-warm-50 to-sage-50 rounded-3xl p-8 shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-14 h-14 rounded-2xl bg-warm-500 text-white flex items-center justify-center mb-6">
+                            <i class="ph ph-map-pin text-3xl"></i>
+                        </div>
+                        
+                        <h3 class="font-serif text-2xl text-sage-700 font-bold mb-4">Lokasi Acara</h3>
+                        
+                        <p class="text-warm-700 mb-4 leading-relaxed">
+                            Rumah Keluarga<br>
+                            Jl. Muchran Ali / JL. Christopel Mihing Gg. Sari Bumi
+                        </p>
+                        
+                        <a href="https://maps.app.goo.gl/NxmkrpZRKu6Wc1PPA" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-sage-500 text-white rounded-full font-medium hover:bg-sage-600 transition-all duration-300 shadow-md hover:shadow-lg">
+                            <i class="ph ph-map-trifold"></i>
+                            <span>Buka Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <!-- <section class="py-20 px-4 bg-warm-50">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <p class="text-sage-600 text-sm tracking-widest uppercase mb-2">Momen Bahagia</p>
+                    <h2 class="font-serif text-3xl md:text-4xl text-sage-700 font-bold">Galeri Foto</h2>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&h=400&fit=crop" 
+                             alt="Arkanza 1" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                             loading="lazy">
+                    </div>
+                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df4?w=400&h=400&fit=crop" 
+                             alt="Arkanza 2" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                             loading="lazy">
+                    </div>
+                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1544126592-807ade215a0b?w=400&h=400&fit=crop" 
+                             alt="Arkanza 3" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                             loading="lazy">
+                    </div>
+                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=400&h=400&fit=crop" 
+                             alt="Arkanza 4" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                             loading="lazy">
+                    </div>
+                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="500">
+                        <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=400&h=400&fit=crop" 
+                             alt="Arkanza 5" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                             loading="lazy">
+                    </div>
+                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="600">
+                        <img src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?w=400&h=400&fit=crop" 
+                             alt="Arkanza 6" 
+                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                             loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        
+        <!-- Doa Section -->
+        <section class="py-20 px-4 bg-sage-50">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl" data-aos="fade-up">
+                    <i class="ph ph-hands-praying text-4xl text-sage-400 mb-6"></i>
+                    
+                    <h3 class="font-serif text-2xl md:text-3xl text-sage-700 font-bold mb-6">
+                        Doa untuk Arkanza
+                    </h3>
+                    
+                    <div class="arabic-font text-xl md:text-2xl text-sage-700 leading-loose mb-6" dir="rtl">
+                        بَارَكَ اللَّهُ لَكَ فِي الْمَوْهُوبِ لَكَ، وَشَكَرْتَ الْوَاهِبَ، وَبَلَغَ أَشُدَّهُ، وَرُزِقْتَ بِرَّهُ
+                    </div>
+                    
+                    <p class="text-warm-600 text-sm md:text-base leading-relaxed italic">
+                        "Semoga Allah memberkahi anugerah (anak) yang diberikan kepadamu, dan engkau pun bersyukur kepada Pemberinya, semoga anakmu mencapai dewasa dan engkau diberkahi kebaikannya"
+                    </p>
+                    <p class="text-sage-500 text-xs mt-4">- HR. Tirmidzi</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer Section -->
+        <footer class="py-16 px-4 bg-warm-800 text-warm-100">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="mb-8" data-aos="fade-up">
+                    <i class="ph ph-heart text-4xl text-sage-400 mb-4"></i>
+                    <p class="text-warm-300 text-sm mb-4">Atas kehadiran dan doa restunya, kami ucapkan</p>
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold mb-2">Terima Kasih</h3>
+                </div>
+                
+                <div class="w-16 h-px bg-warm-600 mx-auto mb-8"></div>
+                
+                <div class="space-y-2 mb-8" data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-warm-300 text-sm">Kami yang berbahagia</p>
+                    <p class="font-serif text-xl md:text-2xl text-warm-100">Keluarga Besar</p>
+                    <p class="text-warm-400 text-sm">Deva Agna Saputra & Nur Anggita Riani</p>
+                </div>
+                
+                <div class="flex justify-center gap-4 mb-8" data-aos="fade-up" data-aos-delay="200">
+                    <button onclick="copyLink()" 
+                            class="w-12 h-12 rounded-full bg-warm-700 flex items-center justify-center hover:bg-sage-500 transition-colors duration-300">
+                        <i class="ph ph-link text-xl"></i>
+                    </button>
+                </div>
+                
+                <p class="text-warm-500 text-xs">
+                    Made with <i class="ph-fill ph-heart text-sage-500"></i> for Arkanza
+                </p>
+            </div>
+        </footer>
+        
+    </main>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="assets/js/main.js"></script>
+    
+</body>
+</html>
