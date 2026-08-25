@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Countdown Timer
-    const eventDate = new Date('2026-04-26T08:00:00').getTime();
+    const eventDate = new Date('2026-08-30T08:00:00').getTime();
     
     function updateCountdown() {
         const now = new Date().getTime();
